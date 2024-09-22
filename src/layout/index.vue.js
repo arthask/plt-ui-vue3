@@ -1,4 +1,3 @@
-/// <reference types=".vue-global-types/vue_3.5_false.d.ts" />
 import { useWindowSize } from '@vueuse/core';
 import Sidebar from './components/Sidebar/index.vue';
 import { AppMain, Navbar, Settings, TagsView } from './components';

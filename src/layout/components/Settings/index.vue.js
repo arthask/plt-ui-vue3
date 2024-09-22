@@ -1,4 +1,3 @@
-/// <reference types=".vue-global-types/vue_3.5_false.d.ts" />
 import { useDynamicTitle } from '@/utils/dynamicTitle';
 import useAppStore from '@/store/modules/app';
 import useSettingsStore from '@/store/modules/settings';

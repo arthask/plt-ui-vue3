@@ -1,4 +1,3 @@
-/// <reference types=".vue-global-types/vue_3.5_false.d.ts" />
 import { ElMessageBox } from 'element-plus';
 import { getCodeImg, register } from '@/api/login';
 import { useRouter } from 'vue-router';

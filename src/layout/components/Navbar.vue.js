@@ -1,4 +1,3 @@
-/// <reference types=".vue-global-types/vue_3.5_false.d.ts" />
 import { ElMessageBox } from 'element-plus';
 import Breadcrumb from '@/components/Breadcrumb/index.vue';
 import TopNav from '@/components/TopNav/index.vue';

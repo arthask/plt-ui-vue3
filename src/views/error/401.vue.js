@@ -1,4 +1,3 @@
-/// <reference types=".vue-global-types/vue_3.5_false.d.ts" />
 import errImage from '@/assets/401_images/401.gif';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';

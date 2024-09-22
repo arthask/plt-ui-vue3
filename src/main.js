@@ -4,7 +4,6 @@ import ElementPlus from 'element-plus';
 import locale from 'element-plus/lib/locale/lang/zh-cn'; // 中文语言
 import '@/assets/styles/index.scss'; // global css
 import App from './App.vue';
-import { createPinia } from 'pinia'; // 引入 pinia
 import store from './store';
 import router from './router';
 import directive from './directive'; // directive
@@ -35,7 +34,6 @@ import TreeSelect from '@/components/TreeSelect';
 // 字典标签组件
 import DictTag from '@/components/DictTag';
 const app = createApp(App);
-const pinia = createPinia(); // 创建 pinia 实例
 // 全局方法挂载
 app.config.globalProperties.useDict = useDict;
 app.config.globalProperties.download = download;
@@ -55,7 +53,6 @@ app.component('ImagePreview', ImagePreview);
 app.component('RightToolbar', RightToolbar);
 app.component('Editor', Editor);
 app.use(router);
-app.use(pinia); // 使用 pinia
 app.use(store);
 app.use(plugins);
 app.use(elementIcons);

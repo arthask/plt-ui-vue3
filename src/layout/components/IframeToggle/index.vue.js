@@ -1,4 +1,3 @@
-/// <reference types=".vue-global-types/vue_3.5_false.d.ts" />
 import InnerLink from '../InnerLink/index.vue';
 import useTagsViewStore from '@/store/modules/tagsView';
 import { useRoute } from 'vue-router';

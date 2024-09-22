@@ -1,4 +1,3 @@
-/// <reference types=".vue-global-types/vue_3.5_false.d.ts" />
 import { isExternal } from '@/utils/validate';
 import AppLink from './Link.vue';
 import { getNormalPath } from '@/utils/ruoyi';

@@ -1,4 +1,3 @@
-/// <reference types=".vue-global-types/vue_3.5_false.d.ts" />
 import ScrollPane from './ScrollPane.vue';
 import { getNormalPath } from '@/utils/ruoyi';
 import useTagsViewStore from '@/store/modules/tagsView';

@@ -13,13 +13,18 @@
             <template v-if="appStore.device !== 'mobile'">
                 <header-search id="header-search" class="right-menu-item" />
 
-                <el-tooltip content="源码地址" effect="dark" placement="bottom">
-                    <ruo-yi-git id="ruoyi-git" class="right-menu-item hover-effect" />
-                </el-tooltip>
-
-                <el-tooltip content="文档地址" effect="dark" placement="bottom">
-                    <ruo-yi-doc id="ruoyi-doc" class="right-menu-item hover-effect" />
-                </el-tooltip>
+                <div class="right-menu-item">
+                    <el-switch
+                        v-model="theme"
+                        active-value="light"
+                        inactive-value="dark"
+                        active-action-icon="Sunny"
+                        inactive-action-icon="Moon"
+                        active-color="var(--bg-color-mute)"
+                        @change="changeTheme"
+                    >
+                    </el-switch>
+                </div>
 
                 <screenfull id="screenfull" class="right-menu-item hover-effect" />
 
@@ -60,21 +65,29 @@ import Hamburger from '@/components/Hamburger/index.vue';
 import Screenfull from '@/components/Screenfull/index.vue';
 import SizeSelect from '@/components/SizeSelect/index.vue';
 import HeaderSearch from '@/components/HeaderSearch/index.vue';
-import RuoYiGit from '@/components/RuoYi/Git/index.vue';
-import RuoYiDoc from '@/components/RuoYi/Doc/index.vue';
 import useAppStore from '@/store/modules/app';
 import useUserStore from '@/store/modules/user';
 import useSettingsStore from '@/store/modules/settings';
+import { ref } from 'vue';
 
 const appStore = useAppStore();
 const userStore = useUserStore();
 const settingsStore = useSettingsStore();
+const theme = ref('light');
 
 function toggleSideBar() {
     appStore.toggleSideBar();
 }
 
-function handleCommand(command: any) {
+const changeTheme = (value: string | number | boolean) => {
+    const html = document.getElementsByTagName('html')[0];
+    html.classList.toggle('dark');
+    html.classList.toggle('light');
+    html.setAttribute('style', '');
+    settingsStore.setSideTheme(value as string);
+};
+
+function handleCommand(command: string) {
     switch (command) {
         case 'setLayout':
             setLayout();
@@ -92,13 +105,12 @@ function logout() {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
-    })
-        .then(() => {
-            userStore.logOut().then(() => {
-                location.href = '/index';
-            });
-        })
-        // .catch(() => {});
+    }).then(() => {
+        userStore.logOut().then(() => {
+            location.href = '/index';
+        });
+    });
+    // .catch(() => {});
 }
 
 const emits = defineEmits(['setLayout']);
@@ -112,7 +124,7 @@ function setLayout() {
     height: 50px;
     overflow: hidden;
     position: relative;
-    background: #fff;
+    background: transparent;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
     .hamburger-container {
@@ -143,10 +155,11 @@ function setLayout() {
     }
 
     .right-menu {
-        float: right;
         height: 100%;
         line-height: 50px;
         display: flex;
+        align-items: center;
+        justify-content: flex-end;
 
         &:focus {
             outline: none;
@@ -171,10 +184,10 @@ function setLayout() {
         }
 
         .avatar-container {
-            margin-right: 40px;
+            margin-right: 20px;
 
             .avatar-wrapper {
-                margin-top: 5px;
+                margin-top: 14px;
                 position: relative;
 
                 .user-avatar {

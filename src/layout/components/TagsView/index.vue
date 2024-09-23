@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import ScrollPane from './ScrollPane.vue';
-import { getNormalPath } from '@/utils/ruoyi';
+import { getNormalPath } from '@/utils/tools';
 import useTagsViewStore from '@/store/modules/tagsView';
 import useSettingsStore from '@/store/modules/settings';
 import usePermissionStore from '@/store/modules/permission';
@@ -103,7 +103,10 @@ function isAffix(tag: any) {
 }
 function isFirstView() {
     try {
-        return selectedTag.value.fullPath === '/index' || selectedTag.value.fullPath === visitedViews.value[1].fullPath;
+        return (
+            selectedTag.value.fullPath === '/index' ||
+            selectedTag.value.fullPath === visitedViews.value[1].fullPath
+        );
     } catch (err) {
         return false;
     }
@@ -256,8 +259,8 @@ function handleScroll() {
 .tags-view-container {
     height: 34px;
     width: 100%;
-    background: #fff;
-    border-bottom: 1px solid #d8dce5;
+    background: transparent;
+    border-bottom: 1px solid var(--el-border-color);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
     .tags-view-wrapper {
         .tags-view-item {
@@ -266,7 +269,7 @@ function handleScroll() {
             cursor: pointer;
             height: 26px;
             line-height: 26px;
-            border: 1px solid #d8dce5;
+            border: 1px solid var(--el-border-color);
             color: #495060;
             background: #fff;
             padding: 0 8px;
@@ -347,3 +350,4 @@ function handleScroll() {
     }
 }
 </style>
+@/utils/tools

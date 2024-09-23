@@ -1,7 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import createVitePlugins from './vite/plugins';
 import path from 'path';
-import process from 'process';
 
 export default defineConfig(({ mode, command }) => {
     const env = loadEnv(mode, process.cwd());
@@ -13,7 +12,7 @@ export default defineConfig(({ mode, command }) => {
         // 例如 https://www.ruoyi.vip/。如果应用被部署在一个子路径上，你就需要用这个选项指定这个子路径。例如，如果你的应用被部署在 https://www.ruoyi.vip/admin/，则设置 baseUrl 为 /admin/。
         base: VITE_APP_ENV === 'production' ? '/' : '/',
         server: {
-            port: 80,
+            port: 3030,
             host: true,
             open: true,
             proxy: {

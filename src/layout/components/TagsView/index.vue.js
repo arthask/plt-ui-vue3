@@ -1,5 +1,5 @@
 import ScrollPane from './ScrollPane.vue';
-import { getNormalPath } from '@/utils/ruoyi';
+import { getNormalPath } from '@/utils/tools';
 import useTagsViewStore from '@/store/modules/tagsView';
 import useSettingsStore from '@/store/modules/settings';
 import usePermissionStore from '@/store/modules/permission';
@@ -50,7 +50,8 @@ function isAffix(tag) {
 }
 function isFirstView() {
     try {
-        return selectedTag.value.fullPath === '/index' || selectedTag.value.fullPath === visitedViews.value[1].fullPath;
+        return (selectedTag.value.fullPath === '/index' ||
+            selectedTag.value.fullPath === visitedViews.value[1].fullPath);
     }
     catch (err) {
         return false;

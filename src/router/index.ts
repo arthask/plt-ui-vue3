@@ -23,19 +23,18 @@ import Layout from '@/layout/index.vue';
     activeMenu: '/system/user'      // 当路由设置了该属性，则会高亮相对应的侧边栏。
   }
  */
-  declare module 'vue-router' {
+declare module 'vue-router' {
     interface RouteMeta {
         hidden?: boolean;
         title?: string;
         icon?: string;
         elSvgIcon?: string;
-        permissions?:string[]
+        permissions?: string[];
     }
     interface _RouteRecordBase {
         hidden?: boolean;
         parentPath?: string;
-        permissions?:string[]
-
+        permissions?: string[];
     }
     interface _RouteLocationBase {
         title?: string;
@@ -105,7 +104,7 @@ export const constantRoutes: RouteRecordRaw[] = [
 ];
 
 // 动态路由，基于用户权限动态去加载
-export const dynamicRoutes : RouteRecordRaw[]= [
+export const dynamicRoutes: RouteRecordRaw[] = [
     {
         path: '/system/user-auth',
         component: Layout,
@@ -148,34 +147,20 @@ export const dynamicRoutes : RouteRecordRaw[]= [
             },
         ],
     },
-    {
-        path: '/monitor/job-log',
-        component: Layout,
-        hidden: true,
-        permissions: ['monitor:job:list'],
-        children: [
-            {
-                path: 'index/:jobId(\\d+)',
-                component: () => import('@/views/monitor/job/log.vue'),
-                name: 'JobLog',
-                meta: { title: '调度日志', activeMenu: '/monitor/job' },
-            },
-        ],
-    },
-    {
-        path: '/tool/gen-edit',
-        component: Layout,
-        hidden: true,
-        permissions: ['tool:gen:edit'],
-        children: [
-            {
-                path: 'index/:tableId(\\d+)',
-                component: () => import('@/views/tool/gen/editTable.vue'),
-                name: 'GenEdit',
-                meta: { title: '修改生成配置', activeMenu: '/tool/gen' },
-            },
-        ],
-    },
+    // {
+    //     path: '/tool/gen-edit',
+    //     component: Layout,
+    //     hidden: true,
+    //     permissions: ['tool:gen:edit'],
+    //     children: [
+    //         {
+    //             path: 'index/:tableId(\\d+)',
+    //             component: () => import('@/views/tool/gen/editTable.vue'),
+    //             name: 'GenEdit',
+    //             meta: { title: '修改生成配置', activeMenu: '/tool/gen' },
+    //         },
+    //     ],
+    // },
 ];
 
 const router = createRouter({

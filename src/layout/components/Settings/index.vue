@@ -4,10 +4,10 @@
             <h3 class="drawer-title">主题风格设置</h3>
         </div>
         <div class="setting-drawer-block-checbox">
-            <div class="setting-drawer-block-checbox-item" @click="handleTheme('theme-dark')">
+            <div class="setting-drawer-block-checbox-item" @click="handleTheme('dark')">
                 <img src="@/assets/images/dark.svg" alt="dark" />
                 <div
-                    v-if="sideTheme === 'theme-dark'"
+                    v-if="sideTheme === 'dark'"
                     class="setting-drawer-block-checbox-selectIcon"
                     style="display: block"
                 >
@@ -29,10 +29,10 @@
                     </i>
                 </div>
             </div>
-            <div class="setting-drawer-block-checbox-item" @click="handleTheme('theme-light')">
+            <div class="setting-drawer-block-checbox-item" @click="handleTheme('light')">
                 <img src="@/assets/images/light.svg" alt="light" />
                 <div
-                    v-if="sideTheme === 'theme-light'"
+                    v-if="sideTheme === 'light'"
                     class="setting-drawer-block-checbox-selectIcon"
                     style="display: block"
                 >
@@ -108,10 +108,6 @@
 </template>
 
 <script setup lang="ts">
-import variables from '@/assets/styles/variables.module.scss';
-import originElementPlus from 'element-plus/theme-chalk/index.css';
-import axios from 'axios';
-import { ElLoading, ElMessage } from 'element-plus';
 import { useDynamicTitle } from '@/utils/dynamicTitle';
 import useAppStore from '@/store/modules/app';
 import useSettingsStore from '@/store/modules/settings';

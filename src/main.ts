@@ -4,17 +4,14 @@ import Cookies from 'js-cookie';
 
 import ElementPlus from 'element-plus';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
-// import en from 'element-plus/dist/locale/en.mjs';
 import 'element-plus/theme-chalk/dark/css-vars.css';
-// import 'element-plus/dist/index.css';
 
 import '@/assets/styles/index.scss'; // global css
-// // element css
-// import 'element-plus/es/components/message/style/css';
-// import 'element-plus/es/components/message-box/style/css';
-// import 'element-plus/es/components/notification/style/css';
-// import 'element-plus/es/components/loading/style/css';
-
+// element css
+import 'element-plus/es/components/message/style/css';
+import 'element-plus/es/components/message-box/style/css';
+import 'element-plus/es/components/notification/style/css';
+import 'element-plus/es/components/loading/style/css';
 // tailwindcss
 import './index.css';
 
@@ -35,23 +32,28 @@ import elementIcons from '@/components/SvgIcon/svgicon';
 import './permission'; // permission control
 
 import { useDict } from '@/utils/dict';
-import { parseTime, addDateRange, handleTree } from '@/utils/tools';
+import {
+    parseTime,
+    addDateRange,
+    handleTree,
+} from '@/utils/tools';
 
 // 分页组件
 import Pagination from '@/components/Pagination/index.vue';
 // 自定义表格工具组件
 import RightToolbar from '@/components/RightToolbar/index.vue';
 // 富文本组件
-import Editor from '@/components/Editor/index.vue';
+import Editor from "@/components/Editor/index.vue"
+// // 文件上传组件
+// import FileUpload from '@/components/FileUpload/index.vue';
+// // 图片上传组件
+// import ImageUpload from '@/components/ImageUpload/index.vue';
+// // 图片预览组件
+// import ImagePreview from '@/components/ImagePreview/index.vue';
 // 自定义树选择组件
 import TreeSelect from '@/components/TreeSelect/index.vue';
 // 字典标签组件
 import DictTag from '@/components/DictTag/index.vue';
-// 弹窗
-import MyDialog from '@/components/Dialog/index.vue';
-import { Size } from './typings/store';
-import {VueCropper} from 'vue-cropper';
-import 'vue-cropper/dist/index.css';
 
 const app = createApp(App);
 
@@ -59,6 +61,7 @@ const app = createApp(App);
 app.config.globalProperties.useDict = useDict;
 app.config.globalProperties.download = download;
 app.config.globalProperties.parseTime = parseTime;
+
 app.config.globalProperties.handleTree = handleTree;
 app.config.globalProperties.addDateRange = addDateRange;
 
@@ -66,16 +69,17 @@ app.config.globalProperties.addDateRange = addDateRange;
 app.component('DictTag', DictTag);
 app.component('Pagination', Pagination);
 app.component('TreeSelect', TreeSelect);
+// app.component('FileUpload', FileUpload);
+// app.component('ImageUpload', ImageUpload);
+// app.component('ImagePreview', ImagePreview);
 app.component('RightToolbar', RightToolbar);
-app.component('Editor', Editor);
-app.component('SvgIcon', SvgIcon);
-app.component('MyDialog', MyDialog);
+app.component('Editor', Editor)
 
 app.use(router);
 app.use(store);
 app.use(plugins);
 app.use(elementIcons);
-app.use(VueCropper);
+app.component('svg-icon', SvgIcon);
 
 directive(app);
 
@@ -83,7 +87,7 @@ directive(app);
 app.use(ElementPlus, {
     locale: zhCn,
     // 支持 large、default、small
-    size: (Cookies.get('size') as Size) || 'default',
+    size: Cookies.get('size') || 'default',
 });
 
 app.mount('#app');

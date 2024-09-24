@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 
 import ElementPlus from 'element-plus';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
+import 'element-plus/theme-chalk/dark/css-vars.css';
 
 import '@/assets/styles/index.scss'; // global css
 // element css

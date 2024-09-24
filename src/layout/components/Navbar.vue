@@ -16,7 +16,7 @@
                 <div class="right-menu-item">
                     <el-switch
                         v-model="theme"
-                        active-value="light"
+                        active-value="theme-dark"
                         inactive-value="dark"
                         active-action-icon="Sunny"
                         inactive-action-icon="Moon"
@@ -73,7 +73,7 @@ import { ref } from 'vue';
 const appStore = useAppStore();
 const userStore = useUserStore();
 const settingsStore = useSettingsStore();
-const theme = ref('light');
+const theme = ref('theme-dark');
 
 function toggleSideBar() {
     appStore.toggleSideBar();
@@ -81,8 +81,8 @@ function toggleSideBar() {
 
 const changeTheme = (value: string | number | boolean) => {
     const html = document.getElementsByTagName('html')[0];
+    html.classList.toggle('theme-dark');
     html.classList.toggle('dark');
-    html.classList.toggle('light');
     html.setAttribute('style', '');
     settingsStore.setSideTheme(value as string);
 };

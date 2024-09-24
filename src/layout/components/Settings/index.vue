@@ -4,10 +4,10 @@
             <h3 class="drawer-title">主题风格设置</h3>
         </div>
         <div class="setting-drawer-block-checbox">
-            <div class="setting-drawer-block-checbox-item" @click="handleTheme('dark')">
+            <div class="setting-drawer-block-checbox-item" @click="handleTheme('theme-dark')">
                 <img src="@/assets/images/dark.svg" alt="dark" />
                 <div
-                    v-if="sideTheme === 'dark'"
+                    v-if="sideTheme === 'theme-dark'"
                     class="setting-drawer-block-checbox-selectIcon"
                     style="display: block"
                 >
@@ -29,10 +29,10 @@
                     </i>
                 </div>
             </div>
-            <div class="setting-drawer-block-checbox-item" @click="handleTheme('light')">
+            <div class="setting-drawer-block-checbox-item" @click="handleTheme('dark')">
                 <img src="@/assets/images/light.svg" alt="light" />
                 <div
-                    v-if="sideTheme === 'light'"
+                    v-if="sideTheme === 'dark'"
                     class="setting-drawer-block-checbox-selectIcon"
                     style="display: block"
                 >

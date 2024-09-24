@@ -182,3 +182,15 @@ aside {
     margin-bottom: 10px;
   }
 }
+
+.dark{
+  .tags-view-container{
+
+    .tags-view-wrapper{
+      .tags-view-item{
+        background-color: #000 !important;
+        color: #fff !important;
+      }
+    }
+  }
+}

@@ -6,6 +6,8 @@ const { sideTheme, showSettings, topNav, tagsView, fixedHeader, sidebarLogo, dyn
 
 const storageSetting = JSON.parse(localStorage.getItem('layout-setting') ?? '{}') || '';
 
+const colorSchema = localStorage.getItem("vueuse-color-scheme");
+
 const useSettingsStore = defineStore('settings', {
     state: () => ({
         title: '',
@@ -17,6 +19,7 @@ const useSettingsStore = defineStore('settings', {
         fixedHeader: storageSetting.fixedHeader === undefined ? fixedHeader : storageSetting.fixedHeader,
         sidebarLogo: storageSetting.sidebarLogo === undefined ? sidebarLogo : storageSetting.sidebarLogo,
         dynamicTitle: storageSetting.dynamicTitle === undefined ? dynamicTitle : storageSetting.dynamicTitle,
+        myColorSchema: colorSchema
     }),
     actions: {
         // 修改布局设置
@@ -34,6 +37,10 @@ const useSettingsStore = defineStore('settings', {
         },
         setSideTheme(theme: string) {
             this.sideTheme = theme;
+        },
+        setMyColorSchema(theme: string) {
+            console.log("修改setMyColorSchema", theme)
+            this.myColorSchema = theme;
         },
     },
 });

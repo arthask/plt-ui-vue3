@@ -68,23 +68,32 @@ import HeaderSearch from '@/components/HeaderSearch/index.vue';
 import useAppStore from '@/store/modules/app';
 import useUserStore from '@/store/modules/user';
 import useSettingsStore from '@/store/modules/settings';
-import { ref } from 'vue';
+import {computed, ref} from 'vue';
+import { useDark, useToggle } from '@vueuse/core'
 
 const appStore = useAppStore();
 const userStore = useUserStore();
 const settingsStore = useSettingsStore();
-const theme = ref('theme-dark');
+const theme = computed(() => settingsStore.sideTheme);
+const isDark = useDark({
+  valueLight: 'theme-dark',
+  valueDark: 'dark',
+})
+const toggleDark = useToggle(isDark);
 
 function toggleSideBar() {
     appStore.toggleSideBar();
 }
 
 const changeTheme = (value: string | number | boolean) => {
-    const html = document.getElementsByTagName('html')[0];
-    html.classList.toggle('theme-dark');
-    html.classList.toggle('dark');
-    html.setAttribute('style', '');
+    // const html = document.getElementsByTagName('html')[0];
+    // html.classList.toggle('theme-dark');
+    // html.classList.toggle('dark');
+    // html.setAttribute('style', '');
     settingsStore.setSideTheme(value as string);
+    settingsStore.setMyColorSchema(value as string === 'theme-dark'?'light':'auto')
+    toggleDark();
+
 };
 
 function handleCommand(command: string) {

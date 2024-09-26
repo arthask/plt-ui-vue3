@@ -15,11 +15,13 @@ $base-menu-background: #304156;
 $base-logo-title-color: #ffffff;
 
 $base-menu-light-color: #ffffff;
-$base-menu-light-background: rgba(0, 0, 0, 0.7);
+$base-menu-light-background: rgb(20, 20, 20);
 $base-logo-light-title-color: #001529;
 
 $base-sub-menu-background: #1f2d3d;
+$base-sub-menu-back-background: #141414;
 $base-sub-menu-hover: #001528;
+$base-sub-menu-back-hover: rgb(65, 159, 255);
 
 // 自定义暗色菜单风格
 /**
@@ -54,6 +56,8 @@ $base-sidebar-width: 200px;
   menuLightBackground: $base-menu-light-background;
   subMenuBackground: $base-sub-menu-background;
   subMenuHover: $base-sub-menu-hover;
+  subMenuBackBackground: $base-sub-menu-back-background;
+  subMenuBackHover: $base-sub-menu-back-hover;
   sideBarWidth: $base-sidebar-width;
   logoTitleColor: $base-logo-title-color;
   logoLightTitleColor: $base-logo-light-title-color;

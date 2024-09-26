@@ -14,14 +14,14 @@
 </template>
 
 <script setup lang="ts">
-import { useWindowSize } from '@vueuse/core';
+import {useDark, useToggle, useWindowSize} from '@vueuse/core';
 import Sidebar from './components/Sidebar/index.vue';
 import { AppMain, Navbar, Settings, TagsView } from './components';
 import defaultSettings from '@/settings';
 
 import useAppStore from '@/store/modules/app';
 import useSettingsStore from '@/store/modules/settings';
-import { computed, watchEffect, ref } from 'vue';
+import {computed, watchEffect, ref, onMounted} from 'vue';
 
 const settingsStore = useSettingsStore();
 const theme = computed(() => settingsStore.theme);
@@ -30,7 +30,7 @@ const sidebar = computed(() => useAppStore().sidebar);
 const device = computed(() => useAppStore().device);
 const needTagsView = computed(() => settingsStore.tagsView);
 const fixedHeader = computed(() => settingsStore.fixedHeader);
-
+const colorSchema = computed(() => settingsStore.myColorSchema);
 const classObj = computed(() => ({
     hideSidebar: !sidebar.value.opened,
     openSidebar: sidebar.value.opened,
@@ -40,7 +40,11 @@ const classObj = computed(() => ({
 
 const { width, height } = useWindowSize();
 const WIDTH = 992; // refer to Bootstrap's responsive design
-
+const isDark = useDark({
+  valueLight: 'theme-dark',
+  valueDark: 'dark',
+})
+const toggleDark = useToggle(isDark);
 watchEffect(() => {
     if (device.value === 'mobile' && sidebar.value.opened) {
         useAppStore().closeSideBar({ withoutAnimation: false });
@@ -61,6 +65,14 @@ const settingRef = ref<any>(null);
 function setLayout() {
     settingRef.value?.openSetting();
 }
+onMounted(() => {
+  if (sideTheme.value === 'theme-dark'
+      && (colorSchema.value === 'dark' || colorSchema.value === 'auto')) {
+    toggleDark();
+  } else if (sideTheme.value === 'dark' && colorSchema.value === 'light') {
+    toggleDark();
+  }
+});
 </script>
 
 <style lang="scss" scoped>

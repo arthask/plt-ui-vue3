@@ -46,7 +46,7 @@ const sideTheme = computed(() => settingsStore.sideTheme);
   width: 100%;
   height: 50px;
   line-height: 50px;
-  background: #2b2f3a;
+  //background: #2b2f3a;
   text-align: center;
   overflow: hidden;
 
@@ -64,7 +64,6 @@ const sideTheme = computed(() => settingsStore.sideTheme);
     & .sidebar-title {
       display: inline-block;
       margin: 0;
-      color: #fff;
       font-weight: 600;
       line-height: 50px;
       font-size: 14px;

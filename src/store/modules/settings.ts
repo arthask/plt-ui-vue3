@@ -6,20 +6,20 @@ const { sideTheme, showSettings, topNav, tagsView, fixedHeader, sidebarLogo, dyn
 
 const storageSetting = JSON.parse(localStorage.getItem('layout-setting') ?? '{}') || '';
 
-const colorSchema = localStorage.getItem("vueuse-color-scheme");
+const colorSchemaSetting = JSON.parse(localStorage.getItem("color-scheme-setting") ?? '{}') || '';
 
 const useSettingsStore = defineStore('settings', {
     state: () => ({
         title: '',
         theme: storageSetting.theme || '#409EFF',
-        sideTheme: storageSetting.sideTheme || sideTheme,
         showSettings: showSettings,
         topNav: storageSetting.topNav === undefined ? topNav : storageSetting.topNav,
         tagsView: storageSetting.tagsView === undefined ? tagsView : storageSetting.tagsView,
         fixedHeader: storageSetting.fixedHeader === undefined ? fixedHeader : storageSetting.fixedHeader,
         sidebarLogo: storageSetting.sidebarLogo === undefined ? sidebarLogo : storageSetting.sidebarLogo,
         dynamicTitle: storageSetting.dynamicTitle === undefined ? dynamicTitle : storageSetting.dynamicTitle,
-        myColorSchema: colorSchema
+        sideTheme: colorSchemaSetting.sideTheme,
+        // myColorSchema: colorSchemaSetting.myColorSchema
     }),
     actions: {
         // 修改布局设置
@@ -35,12 +35,15 @@ const useSettingsStore = defineStore('settings', {
             this.title = title;
             useDynamicTitle();
         },
-        setSideTheme(theme: string) {
-            this.sideTheme = theme;
-        },
         setMyColorSchema(theme: string) {
-            console.log("修改setMyColorSchema", theme)
-            this.myColorSchema = theme;
+            this.sideTheme = theme;
+            const colorSchema = theme as string === 'theme-dark' ? 'light' : 'auto';
+            // this.myColorSchema = this.myColorSchema = theme;
+            let layoutSetting = {
+                sideTheme: theme,
+                // myColorSchema: colorSchema,
+            };
+            localStorage.setItem('color-scheme-setting', JSON.stringify(layoutSetting));
         },
     },
 });

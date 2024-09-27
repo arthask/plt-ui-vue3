@@ -156,7 +156,6 @@ defineExpose({
 <style lang="scss" scoped>
 .setting-drawer-title {
     margin-bottom: 12px;
-    color: rgba(0, 0, 0, 0.85);
     line-height: 22px;
     font-weight: bold;
     .drawer-title {
@@ -204,7 +203,6 @@ defineExpose({
 }
 
 .drawer-item {
-    color: rgba(0, 0, 0, 0.65);
     padding: 12px 0;
     font-size: 14px;
 

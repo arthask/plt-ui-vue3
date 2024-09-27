@@ -30,7 +30,7 @@ const sidebar = computed(() => useAppStore().sidebar);
 const device = computed(() => useAppStore().device);
 const needTagsView = computed(() => settingsStore.tagsView);
 const fixedHeader = computed(() => settingsStore.fixedHeader);
-const colorSchema = computed(() => settingsStore.myColorSchema);
+// const colorSchema = computed(() => settingsStore.myColorSchema);
 const classObj = computed(() => ({
     hideSidebar: !sidebar.value.opened,
     openSidebar: sidebar.value.opened,
@@ -65,14 +65,6 @@ const settingRef = ref<any>(null);
 function setLayout() {
     settingRef.value?.openSetting();
 }
-onMounted(() => {
-  if (sideTheme.value === 'theme-dark'
-      && (colorSchema.value === 'dark' || colorSchema.value === 'auto')) {
-    toggleDark();
-  } else if (sideTheme.value === 'dark' && colorSchema.value === 'light') {
-    toggleDark();
-  }
-});
 </script>
 
 <style lang="scss" scoped>
